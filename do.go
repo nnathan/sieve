@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"sieve/lexer"
+
+	"github.com/nnathan/sieve/lexer"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"sieve/lexer"
+	"github.com/nnathan/sieve/lexer"
 )
 
 func TestLexer(t *testing.T) {
