@@ -25,11 +25,6 @@ func NewLexer(src []byte) *Lexer {
 	return l
 }
 
-func (l *Lexer) Scan() (Position, Token, string) {
-	pos, tok, val := l.scan()
-	return pos, tok, val
-}
-
 // Load the next character into l.ch (or 0 on end of input) and update
 // line and column position.
 func (l *Lexer) next() {
@@ -50,7 +45,7 @@ func (l *Lexer) next() {
 	l.offset++
 }
 
-func (l *Lexer) scan() (Position, Token, string) {
+func (l *Lexer) Scan() (pos Position, tok Token, val string) {
 	isEOF := func() bool { return (l.offset - 1) >= len(l.src) }
 
 	// Consume whitespace and hash comments: RFC specifies space, tabs, CRLF. Relaxed to include single \n.
@@ -160,9 +155,9 @@ func (l *Lexer) scan() (Position, Token, string) {
 		return l.pos, ItemEOF, ""
 	}
 
-	pos := l.pos
-	tok := ItemIllegal
-	val := string([]byte{l.ch})
+	pos = l.pos
+	tok = ItemIllegal
+	val = string([]byte{l.ch})
 
 	ch := l.ch
 	start := l.offset - 1
